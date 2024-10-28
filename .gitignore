@@ -1,0 +1,81 @@
+# Java-related files
+*.class
+*.jar
+*.war
+*.ear
+
+# Log files
+*.log
+
+# Spring Boot properties and environment files
+/application.properties
+/application.yml
+*.env
+
+# Maven and Gradle directories
+mvnw
+mvnw.cmd
+/.mvn
+/target/
+build/
+.gradle/
+/out/
+
+# Dependency directories
+lib/
+node_modules/
+
+# IDEs and Editors
+/.idea/
+/.project
+.classpath
+.settings/
+/*.iml
+/.vscode/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Intellij IDEA
+*.iws
+.idea/
+*.iml
+*.ipr
+
+# Eclipse
+*.class
+*.classpath
+*.project
+.settings/
+*.launch
+bin/
+
+# STS
+.springBeans
+
+# VS Code
+.vscode/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+
+# JUnit
+/test-output/
+
+# Spring Boot DevTools
+/.reload/
+
+# Logs and temp files
+logs/
+tmp/
+
+# Ignore database files
+*.h2.db
+*.mv.db
+*.h2.db.lock
+
+# Docker
+docker-compose.override.yml
