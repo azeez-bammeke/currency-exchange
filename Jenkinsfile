@@ -21,12 +21,12 @@ pipeline {
             stage('Build docker image') {
                             steps {
                                     script {
-                                        def customImage = docker.build('currency-exchange', "./docker")
-                                        docker.withRegistry('acrdevwebnet.azurecr.io', 'acrdevwebnet') {
-                                            customImage.push("${env.BUILD_NUMBER}")
+                                            def customImage = docker.build('currency-exchange')
+                                            docker.withRegistry('https://acrdevwebnet.azurecr.io', 'acr-wbnet-app') {
+                                                customImage.push("${env.BUILD_NUMBER}")
                                         }
                                     }
                             }
-                        }
+            }
     }
 }
