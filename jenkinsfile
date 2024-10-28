@@ -1,0 +1,32 @@
+pipeline {
+	agent any
+	    tools {
+	        maven 'maven'
+	            jdk 'JDK17'
+	    }
+    stages {
+            stage('Build Maven') {
+                steps {
+                       sh 'pwd'
+                       sh 'mvn clean install package'
+                }
+            }
+            stage('Copy Artifact') {
+                steps {
+                       sh 'pwd'
+                       sh 'cp -r target/*.jar docker'
+                }
+            }
+
+            stage('Build docker image') {
+                            steps {
+                                    script {
+                                        def customImage = docker.build('currency-exchange', "./docker")
+                                        docker.withRegistry('acrdevwebnet.azurecr.io', 'acrdevwebnet') {
+                                            customImage.push("${env.BUILD_NUMBER}")
+                                        }
+                                    }
+                            }
+                        }
+    }
+}
