@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currency-exchange
+  labels:
+    app: currency-exchange
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: currency-exchange
+  template:
+    metadata:
+      labels:
+        app: currency-exchange
+    spec:
+      containers:
+        - name: currency-exchange
+          image: abammeke/currency-exchange:latest
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: docker-hub-credentials

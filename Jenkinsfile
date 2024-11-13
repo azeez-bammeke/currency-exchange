@@ -4,7 +4,7 @@ pipeline {
 	agent any
 	    tools {
 	        maven 'maven'
-	            jdk 'JDK17'
+	            jdk 'JDK21'
 	    }
     stages {
             stage('Build Maven') {
@@ -41,12 +41,23 @@ pipeline {
                                 }
                             }
                         }
-                    }
             }
+
+            stage('Deploy to K8') {
+                        steps {
+                            script {
+                                def imageName = "abammeke/currency-exchange:${BUILD_NUMBER}"
+                                sh "kubectl apply -f k8s/deployment.yaml"
+                                sh "kubectl apply -f k8s/service.yaml"
+                            }
+                        }
+                    }
+                }
+
             post {
                     cleanup {
-                        sh "docker rmi abammeke/currency-exchange:${BUILD_NUMBER}"
-                        sh "docker rmi registry.hub.docker.com/abammeke/currency-exchange"
+                         sh "docker rmi abammeke/currency-exchange:${BUILD_NUMBER}"
+                         sh "docker rmi registry.hub.docker.com/abammeke/currency-exchange"
                     }
                 }
 }
