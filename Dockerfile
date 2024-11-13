@@ -1,4 +1,4 @@
-FROM openjdk:11
-ADD *.jar app.jar
-LABEL authors="Azeez Ayobami"
-ENTRYPOINT java -jar app.jar
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+COPY target/currency-exchange-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]

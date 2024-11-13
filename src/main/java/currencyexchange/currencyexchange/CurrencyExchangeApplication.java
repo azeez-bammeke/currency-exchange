@@ -15,6 +15,6 @@ public class CurrencyExchangeApplication {
 
 	@GetMapping("/")
 	public String welcomeMessage() {
-		return "Welcome to the Currency Exchange!";
+		return "Welcome to the Currency Exchange Version 2.5!";
 	}
 }
